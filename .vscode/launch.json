@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "mix_task",
-            "name": "mix phoenix.server",
+            "name": "mix server",
             "request": "launch",
             "projectDir": "${workspaceRoot}",
             "task": "mix phoenix.server",
