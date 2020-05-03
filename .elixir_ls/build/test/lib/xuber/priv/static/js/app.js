@@ -1470,7 +1470,7 @@ window.addEventListener('click', function (event) {
 }, false);
   })();
 });
-require.register("Users/clacue/elixir_look/xuber-old/web/static/js/socket.js", function(exports, require, module) {
+require.register("Users/clacue/elixir_look/trackme/web/static/js/socket.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1521,52 +1521,66 @@ function initializeMapAndLocator() {
     var new_lat = newlatlng.lat;
     var new_lng = newlatlng.lng;
 
-    var Details = {
-      username: username,
-      active: true,
-      new_lat: new_lat,
-      new_lng: new_lng,
-      update: true
-    };
+    // var Details = {
+    //     username: username,
+    //     active: true,
+    //     new_lat: new_lat,
+    //     new_lng: new_lng,
+    //     update: true
+    // };
+
+    channel.push("move", {
+      name: name,
+      coords: {
+        latitude: new_lat,
+        longitude: new_lng
+      }
+    });
+
+    if (map.hasLayer(mymarker)) {
+      map.removeLayer(mymarker);
+    }
+
+    // mymarker = new L.circle([coords.lat,coords.lng], {radius:1000})
+    mymarker = new L.circle([new_lat, new_lng], { radius: 1000 });
+
+    // mymarker.addTo(map);
+    map.addLayer(mymarker);
+    mymarker.bindPopup('<p>You are here ' + name + '</p>').openPopup();
   }
 
   map.on('locationfound', onLocationFound);
 
   //socket.emit('new_coords', Details);
-  channel.push("move", {
-    name: name,
-    coords: {
-      latitude: coords.latitude,
-      longitude: coords.longitude
-    }
-  });
+
 
   channel.on("moved", function (resp) {
     if (map.hasLayer(markers[resp.name])) {
       map.removeLayer(markers[resp.name]);
     }
+    console.log(markers);
+    console.log(resp.coords.latitude);
+    console.log(resp.coords.longitude);
 
-    markers[resp.name] = new L.marker([resp.coords.longitude, resp.coords.latitude], {
-      draggable: true,
-      icon: redIcon
-    });
+    markers[resp.name] = new L.circle([resp.coords.latitude, resp.coords.longitude], { radius: 1000 });
     map.addLayer(markers[resp.name]);
     markers[resp.name].bindPopup(resp.name + ' is on the move').openPopup();
     console.log(resp.name);
     console.log("Moved " + resp.name + " to " + resp.coords.latitude + ", " + resp.coords.longitude, resp.coords);
   });
 
-  if (map.hasLayer(mymarker)) {
-    map.removeLayer(mymarker);
-  }
+  // if (map.hasLayer(mymarker)) {
+  //     map.removeLayer(mymarker);
+  // }
 
-  mymarker = new L.Marker(e.latlng, {
-    icon: yellowIcon,
-    draggable: true
-  });
+  // mymarker = new L.Marker(e.latlng, {
+  //     icon: yellowIcon,
+  //     draggable: true
+  // });
 
-  map.addLayer(mymarker);
-  mymarker.bindPopup('<p>You are here ' + username + '</p>').openPopup();
+  // map.addLayer(mymarker);
+  // mymarker.bindPopup('<p>You are here ' + username + '</p>').openPopup();
+
 }
 
 initializeMapAndLocator();
@@ -1787,8 +1801,12 @@ function initializeMapAndLocator() {
       }
     });
 
+    if (map.hasLayer(mymarker)) {
+      map.removeLayer(mymarker);
+    }
+
     // mymarker = new L.circle([coords.lat,coords.lng], {radius:1000})
-    mymarker = new L.circle([new_lat, new_lng], { radius: 1000 });
+    mymarker = new L.circle([new_lat, new_lng], { radius: 10 });
 
     // mymarker.addTo(map);
     map.addLayer(mymarker);
@@ -1808,7 +1826,7 @@ function initializeMapAndLocator() {
     console.log(resp.coords.latitude);
     console.log(resp.coords.longitude);
 
-    markers[resp.name] = new L.circle([resp.coords.latitude, resp.coords.longitude], { radius: 1000 });
+    markers[resp.name] = new L.circle([resp.coords.latitude, resp.coords.longitude], { radius: 10 });
     map.addLayer(markers[resp.name]);
     markers[resp.name].bindPopup(resp.name + ' is on the move').openPopup();
     console.log(resp.name);
