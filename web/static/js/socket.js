@@ -66,7 +66,7 @@ function initializeMapAndLocator() {
     }
 
     // mymarker = new L.circle([coords.lat,coords.lng], {radius:1000})
-    mymarker = new L.circle([new_lat,new_lng], {radius:1000})
+    mymarker = new L.circle([new_lat,new_lng], {radius:10})
 
 
     
@@ -89,7 +89,7 @@ function initializeMapAndLocator() {
     console.log(resp.coords.longitude)
 
       
-    markers[resp.name] = new L.circle([resp.coords.latitude,resp.coords.longitude], {radius:1000})
+    markers[resp.name] = new L.circle([resp.coords.latitude,resp.coords.longitude], {radius:10})
     map.addLayer(markers[resp.name]);
     markers[resp.name].bindPopup(resp.name + ' is on the move').openPopup();
     console.log(resp.name)
