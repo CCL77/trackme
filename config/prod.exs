@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :xuber, XUber.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "warm-earth-20633.herokuapp.com/", port: 443],
+  url: [scheme: "https", host: "salty-dawn-15968.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   # http: [port: {:system, "PORT"}],
   # url: [host: "example.com", port: 80],
