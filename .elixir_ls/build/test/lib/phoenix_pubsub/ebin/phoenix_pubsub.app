@@ -1,6 +1,6 @@
 {application,phoenix_pubsub,
              [{applications,[kernel,stdlib,elixir,logger,crypto]},
-              {description,"Distributed PubSub and Presence platform\n"},
+              {description,"Distributed PubSub and Presence platform"},
               {modules,['Elixir.Phoenix.PubSub',
                         'Elixir.Phoenix.PubSub.BroadcastError',
                         'Elixir.Phoenix.PubSub.GC',
@@ -13,7 +13,8 @@
                         'Elixir.Phoenix.Tracker.Clock',
                         'Elixir.Phoenix.Tracker.DeltaGeneration',
                         'Elixir.Phoenix.Tracker.Replica',
+                        'Elixir.Phoenix.Tracker.Shard',
                         'Elixir.Phoenix.Tracker.State']},
               {registered,[]},
-              {vsn,"1.0.1"},
+              {vsn,"1.1.2"},
               {mod,{'Elixir.Phoenix.PubSub.Supervisor',[]}}]}.

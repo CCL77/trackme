@@ -77,6 +77,6 @@
                         'Elixir.String.Chars.Postgrex.Query',
                         'Elixir.String.Chars.Postgrex.Stream']},
               {registered,[]},
-              {vsn,"0.13.2"},
+              {vsn,"0.13.5"},
               {mod,{'Elixir.Postgrex.App',[]}},
               {env,[{type_server_reap_after,180000}]}]}.
