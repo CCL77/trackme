@@ -13,5 +13,5 @@
                         'Elixir.XUber.TrackerChannel',
                         'Elixir.XUber.UserSocket','Elixir.XUber.Web']},
               {registered,[]},
-              {vsn,"0.0.1"},
+              {vsn,"0.1.0"},
               {mod,{'Elixir.XUber',[]}}]}.
