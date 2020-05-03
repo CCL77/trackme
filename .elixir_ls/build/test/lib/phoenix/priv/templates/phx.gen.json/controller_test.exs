@@ -36,8 +36,8 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
       conn = get(conn, Routes.<%= schema.route_helper %>_path(conn, :show, id))
 
       assert %{
-               "id" => id<%= for {key, val} <- schema.params.create do %>,
-               "<%= key %>" => <%= val |> Phoenix.json_library().encode!() |> Phoenix.json_library().decode!() |> inspect() %><% end %>
+               "id" => id<%= for {key, val} <- schema.params.create |> Phoenix.json_library().encode!() |> Phoenix.json_library().decode!() do %>,
+               "<%= key %>" => <%= inspect(val) %><% end %>
              } = json_response(conn, 200)["data"]
     end
 
@@ -57,8 +57,8 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
       conn = get(conn, Routes.<%= schema.route_helper %>_path(conn, :show, id))
 
       assert %{
-               "id" => id<%= for {key, val} <- schema.params.update do %>,
-               "<%= key %>" => <%= Phoenix.json_library().encode!(val) %><% end %>
+               "id" => id<%= for {key, val} <- schema.params.update |> Phoenix.json_library().encode!() |> Phoenix.json_library().decode!() do %>,
+               "<%= key %>" => <%= inspect(val) %><% end %>
              } = json_response(conn, 200)["data"]
     end
 
@@ -83,6 +83,6 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
 
   defp create_<%= schema.singular %>(_) do
     <%= schema.singular %> = fixture(:<%= schema.singular %>)
-    {:ok, <%= schema.singular %>: <%= schema.singular %>}
+    %{<%= schema.singular %>: <%= schema.singular %>}
   end
 end
