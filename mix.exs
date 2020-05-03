@@ -5,7 +5,7 @@ defmodule XUber.Mixfile do
     [
       app: :xuber,
       version: "0.1.0",
-      elixir: "~> 1.10.1",
+      elixir: "~> 1.10.3",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       build_embedded: Mix.env == :prod,
@@ -38,7 +38,7 @@ defmodule XUber.Mixfile do
       {:phoenix_ecto, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.6"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_live_reload, ">= 1.2.1", only: :dev},
       {:gettext, "~> 0.16"},
       {:cowboy, "~> 1.0"},
       {:poison, "~> 3.1"}
