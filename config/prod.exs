@@ -14,7 +14,7 @@ use Mix.Config
 config :xuber, XUber.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "fast-escarpment-11616.herokuapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
   # http: [port: {:system, "PORT"}],
   # url: [host: "example.com", port: 80],
   # cache_static_manifest: "priv/static/manifest.json"
