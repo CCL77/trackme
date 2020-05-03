@@ -14,5 +14,5 @@
                         'Elixir.Phoenix.Tracker.Shard',
                         'Elixir.Phoenix.Tracker.State']},
               {registered,[]},
-              {vsn,"1.1.2"},
-              {mod,{'Elixir.Phoenix.PubSub.Supervisor',[]}}]}.
+              {vsn,"2.0.0"},
+              {mod,{'Elixir.Phoenix.PubSub.Application',[]}}]}.
