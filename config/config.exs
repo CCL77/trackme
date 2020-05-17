@@ -15,8 +15,7 @@ config :xuber, XUber.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "QNlpbj2HG/n4hc00mX3VZC2HIu7p2Hc+Qi2TLGPmvrDOapkPNBe+J0X3c7tundie",
   render_errors: [view: XUber.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: XUber.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub_server: XUber.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
