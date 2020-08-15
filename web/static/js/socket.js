@@ -11,53 +11,87 @@ socket.connect()
 
 let name = prompt("Your name?")
 let map;
+let marker;
 let channel = socket.channel("tracker:lobby", {name: name})
+
+
 
 window.channel = channel;
 
-function positionChanged(position) {
-  let coords = position.coords;
-
-  channel.push("move", {
-    name: name,
-    coords: {
-      latitude: coords.latitude,
-      longitude: coords.longitude
-    }
-  })
-
-  map.setCenter({lat: coords.latitude, lng: coords.longitude})
-}
-
-window.initMap = function() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
-}
-
 channel.join()
-  .receive("ok", resp => {
-    navigator.geolocation.watchPosition(positionChanged);
+.receive("ok", resp => { console.log("Joined successfully", resp) })
 
-    console.log("Joined successfully", resp)
+function initializeMapAndLocator() {
+
+  var markers = {};
+  var mymarker;
+  map = L.map('map')
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  map.locate({setView: true, maxZoom: 16});
+
+
+
+  function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    map.locate({
+        setView: false,
+        timeout: 60000,
+        enableHighAccuracy: true
+    });
+    var coords = e.coords;
+    var newlatlng = e.latlng;
+    const new_lat = newlatlng.lat;
+    const new_lng = newlatlng.lng;
+
+  
+    channel.push(("move"), {
+      name: name,
+      coords: {
+        latitude: new_lat,
+        longitude: new_lng
+      }
+    })
+
+    if (map.hasLayer(mymarker)) {
+      map.removeLayer(mymarker);
+    }
+
+    // mymarker = new L.circle([coords.lat,coords.lng], {radius:1000})
+    mymarker = new L.circle([new_lat,new_lng], {radius:10})
+
+
+    
+    // mymarker.addTo(map);
+    map.addLayer(mymarker);
+    mymarker.bindPopup('<p>You are here ' + name + '</p>').openPopup();
+  }
+
+  map.on('locationfound', onLocationFound);
+
+    //socket.emit('new_coords', Details);
+    
+
+  channel.on("moved", resp => {
+    if (map.hasLayer(markers[resp.name])) {
+        map.removeLayer(markers[resp.name]);
+    }
+    console.log(markers)
+    console.log(resp.coords.latitude)
+    console.log(resp.coords.longitude)
+
+      
+    markers[resp.name] = new L.circle([resp.coords.latitude,resp.coords.longitude], {radius:10})
+    map.addLayer(markers[resp.name]);
+    markers[resp.name].bindPopup(resp.name + ' is on the move').openPopup();
+    console.log(resp.name)
+    console.log(`Moved ${resp.name} to ${resp.coords.latitude}, ${resp.coords.longitude}`, resp.coords);
   })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  
+}
+  
+initializeMapAndLocator()
 
-channel.on("welcome", resp => {
-  console.log(`Welcome! Folks we know about: ${resp.names.join(', ')}`)
-})
-
-channel.on("joined", resp => {
-  console.log(`${resp.names.join(', ')} has joined`)
-})
-
-channel.on("left", resp => {
-  console.log(`${resp.names.join(', ')} has left`)
-})
-
-channel.on("moved", resp => {
-  console.log(`Moved ${resp.name} to ${resp.coords.latitude}, ${resp.coords.longitude}`, resp.coords);
-})
 
 export default socket

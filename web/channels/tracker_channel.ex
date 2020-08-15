@@ -26,6 +26,7 @@ defmodule XUber.TrackerChannel do
     Coordinator.move(name, coords)
 
     broadcast(socket, "moved", payload)
+    #push(socket, "moved", payload)
 
     {:reply, {:ok, %{}}, socket}
   end

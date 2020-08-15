@@ -1,8 +1,9 @@
 defmodule XUber.Endpoint do
   use Phoenix.Endpoint, otp_app: :xuber
 
-  socket "/socket", XUber.UserSocket
-
+  socket "/socket", XUber.UserSocket,
+    websocket: [timeout: 45_000],
+    longpoll: false
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
@@ -29,6 +30,9 @@ defmodule XUber.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
+
+
+  {Phoenix.PubSub, [name: XUber.PubSub, adapter: Phoenix.PubSub.PG2]}
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

@@ -11,6 +11,8 @@ defmodule XUber do
       # Start the Ecto repository
       # supervisor(XUber.Repo, []),
       # Start the endpoint when the application starts
+
+      {Phoenix.PubSub, [name: XUber.PubSub, adapter: Phoenix.PubSub.PG2]},
       supervisor(XUber.Endpoint, []),
       # Start your own worker by calling: XUber.Worker.start_link(arg1, arg2, arg3)
       # worker(XUber.Worker, [arg1, arg2, arg3]),
