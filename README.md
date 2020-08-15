@@ -1,7 +1,7 @@
 # XUber
 
-## Is a updated version from https://github.com/joshnuss/xuber-old used as introduction to elixir
-## demo https://fast-escarpment-11616.herokuapp.com/
+- Is a updated version from https://github.com/joshnuss/xuber-old used as introduction to elixir
+- demo https://fast-escarpment-11616.herokuapp.com/
 
 A Uber-like app that uses [Phoenix Channels](http://www.phoenixframework.org/docs/channels) and integrates with the browser's [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation).
 
