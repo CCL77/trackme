@@ -20,7 +20,11 @@ defmodule XUber.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", XUber do
-  #   pipe_through :api
-  # end
+  scope "/api", XUber do
+    pipe_through :api
+
+    get "/users", ApiController, :index
+
+    post "/create", ApiController, :create
+  end
 end

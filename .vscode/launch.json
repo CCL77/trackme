@@ -6,10 +6,11 @@
     "configurations": [
         {
             "type": "mix_task",
-            "name": "mix server",
+            "name": "mix phx.server",
+            "task": "phx.server",
+            "taskArgs": [],
             "request": "launch",
-            "projectDir": "${workspaceRoot}",
-            "task": "mix phoenix.server",
+            "projectDir": "${workspaceRoot}"
         },
         {
             "type": "mix_task",

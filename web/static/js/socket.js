@@ -60,8 +60,6 @@ function initializeMapAndLocator() {
 
     // mymarker = new L.circle([coords.lat,coords.lng], {radius:1000})
     mymarker = new L.circle([new_lat,new_lng], {radius:10})
-
-
     
     // mymarker.addTo(map);
     map.addLayer(mymarker);

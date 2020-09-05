@@ -27,7 +27,7 @@ Caveat: in this demo, all clients connect to one coordinating process. In the re
 
   * Install dependencies with `mix deps.get`
   * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+  * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
