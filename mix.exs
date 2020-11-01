@@ -3,7 +3,7 @@ defmodule XUber.Mixfile do
 
   def project do
     [
-      app: :xuber,
+      app: :XUber,
       version: "0.1.0",
       elixir: "~> 1.10.3",
       elixirc_paths: elixirc_paths(Mix.env),

@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :xuber, XUber.Endpoint,
+config :XUber, XUber.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -16,7 +16,7 @@ config :xuber, XUber.Endpoint,
 
 
 # Watch static and templates for browser reloading.
-config :xuber, XUber.Endpoint,
+config :XUber, XUber.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
@@ -26,7 +26,7 @@ config :xuber, XUber.Endpoint,
     ]
   ]
 
-config :xuber, :map_api_key, "AIzaSyBLTunQagoC2MCJ_aKHiKzvDeWPqWg_Zqg"
+config :XUber, :map_api_key, "AIzaSyBLTunQagoC2MCJ_aKHiKzvDeWPqWg_Zqg"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

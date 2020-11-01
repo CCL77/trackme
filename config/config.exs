@@ -6,12 +6,12 @@
 use Mix.Config
 
 # General application configuration
-config :xuber,
+config :XUber,
   namespace: XUber,
   ecto_repos: []
 
 # Configures the endpoint
-config :xuber, XUber.Endpoint,
+config :XUber, XUber.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "QNlpbj2HG/n4hc00mX3VZC2HIu7p2Hc+Qi2TLGPmvrDOapkPNBe+J0X3c7tundie",
   render_errors: [view: XUber.ErrorView, accepts: ~w(html json)],

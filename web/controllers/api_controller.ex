@@ -25,11 +25,12 @@ defmodule XUber.ApiController do
   def create(conn, params) do
     #json conn, params
 
-    json conn, XUber.Endpoint.broadcast("socket", "move", params)
+    # json conn, XUber.TrackerChannel.handle_in(params)
+
+     json conn, XUber.Endpoint.broadcast("socket", "moved", params)
     # json conn, Phoenix.Socket.Broadcast{topic: "test", event: "moved", payload: params}
 
-    # curl -H "Content-Type: application/json"  -d '{"name":"value1", "coords":{"latitude":"7.2531
-    # 60", "longitude":"46.916109"}}' -X POST http://localhost:4000/api/create
+    # curl -H "Content-Type: application/json"  -d '{"name":"value1", "coords":{"latitude":"7.253160", "longitude":"46.916109"}}' -X POST http://localhost:4000/api/create
     # "ok"
   end
 end

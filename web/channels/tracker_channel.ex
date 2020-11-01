@@ -22,6 +22,7 @@ defmodule XUber.TrackerChannel do
     {:noreply, socket}
   end
 
+  @spec handle_in(<<_::32>>, map, Phoenix.Socket.t()) :: {:reply, {:ok, %{}}, Phoenix.Socket.t()}
   def handle_in("move", payload=%{"name" => name, "coords" => coords}, socket) do
     Coordinator.move(name, coords)
 
